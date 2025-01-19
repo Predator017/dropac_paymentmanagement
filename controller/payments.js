@@ -59,7 +59,7 @@ exports.verifyPayment = async (req, res) => {
         
         const driver = await Driver.findById(driverId);
 
-        if (paymentdone !== undefined) driver.paymentdone = paymentdone;
+        driver.paymentdone = true;
     
         await driver.save();
 
