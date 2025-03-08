@@ -10,7 +10,7 @@ const paymentSchema = new mongoose.Schema({
     razorpayOrderId: { type: String },  // Razorpay Order ID
     razorpayPaymentId: { type: String },  // Razorpay Payment ID
     transactionId: { type: String },  // Optionally, you can still store this if needed\
-    created_at: { type: Date, default: Date.now },
+    created_at: { type: String },
   });
   
   module.exports = mongoose.model('Payment', paymentSchema);

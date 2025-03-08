@@ -4,6 +4,7 @@ const Razorpay = require('razorpay');
 const { validateWebhookSignature } = require('razorpay/dist/utils/razorpay-utils');
 const Payment = require('../model/payments'); // Import the Payment model
 const Driver = require('../model/driver');
+const moment = require('moment-timezone');
 
 require('dotenv').config();
 
@@ -20,6 +21,7 @@ exports.initiatePayment = async (req, res) => {
       userId: req.user.userId,
       amount,
       currency,
+      created_at: moment().tz("Asia/Kolkata").format("YYYY-MM-DD HH:mm:ss")
     });
     await newPayment.save();
 
@@ -66,7 +68,7 @@ exports.verifyPayment = async (req, res) => {
 
 
       }
-      res.status(200).json({ status: 'ok', paymentId: payment._id, amount: payment.amount, createdAr: payment.created_at });
+      res.status(200).json({ status: 'ok', paymentId: payment._id, amount: payment.amount, createdAt: payment.created_at });
     } else {
       res.status(400).json({ status: 'verification_failed' });
       console.log("Payment verification failed");

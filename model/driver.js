@@ -28,7 +28,7 @@ const driverSchema = new mongoose.Schema({
   cleardues: [{
     paymentId: { type: String },
     amount: { type: Number },
-    time: { type: Date, default: Date.now }
+    time: { type: String }
   }],
   
   willDrive: { type: Boolean },
@@ -48,11 +48,11 @@ const driverSchema = new mongoose.Schema({
   bodyDetails: { type: String },
   bodyType: { type: String },
 
+  rideInProgress: {type: Boolean, default: false},
 
   documentStatus: { type: String, default: 'new' }, //new, pending, success, failed
   vehicleStatus: {type: String, default: 'new'}, //new, pending, success, failed
   paymentdone: { type: Boolean, default: false }, //true
-
 
 
   
